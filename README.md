@@ -18,7 +18,7 @@ Domino · Poker · Chess · Bitcoin Academy
 
 ## What is this?
 
-**Satoshi's Playroom** is a real-time, real-money multiplayer gaming platform where players bet Bitcoin satoshis on classic games: Domino, Texas Hold'em Poker, and Chess. Every game settles instantly via the **Lightning Network**, and the platform doubles as a learning environment with the built-in **Bitcoin Academy** that rewards players with real sats for completing courses.
+**Satoshi's Playroom** is a real-time, real-money multiplayer gaming platform where players bet Bitcoin satoshis on Domino, Texas Hold'em Poker, and Chess. Every game settles instantly via the **Lightning Network**, and the platform doubles as a learning environment with the built-in **Bitcoin Academy** that rewards players with real sats for completing courses.
 
 This repository is a **showcase**, a living portfolio of the project's design, architecture, and engineering decisions. The source code lives in a private repository.
 
@@ -158,7 +158,7 @@ All security-sensitive randomness (deck shuffling, invite codes, IDs) uses Node'
 Every balance mutation runs inside a Firestore transaction. Funds are **locked before** a game starts, never optimistically credited. If a Blink withdrawal fails after balance deduction, a refund transaction runs immediately. There is no code path where sats can vanish.
 
 ### 🔄 Cross-game protection
-A user cannot play poker and domino simultaneously. Bidirectional locks (`isUidAtTable` ↔ `isUserInChallengeGame`) are enforced via dependency injection. Cleanup runs on every exit path: cashout, disconnect, or table destruction.
+A user cannot play poker and domino simultaneously. Bidirectional locks (`isUidAtTable` ↔ `isUserInChallengeGame`) are enforced via dependency injection. Cleanup runs on every exit path (cashout, disconnect, table destruction).
 
 ### 📡 Real-time architecture
 - Per-socket and per-UID rate limiting (15 events/sec, 30 events/sec respectively) to prevent multi-tab bypass
@@ -191,7 +191,7 @@ The platform is more than just games. It's a community.
 
 ## Admin Dashboard
 
-A purpose-built admin panel surfaces what matters: revenue, activity, graduates, and risk signals.
+A purpose-built admin panel surfaces revenue, activity, graduates, and risk signals.
 
 - **KPIs:** total rake, daily active users, education graduates, deposit and withdrawal flows
 - **Per-game rake separation:** domino, poker, chess tracked independently
